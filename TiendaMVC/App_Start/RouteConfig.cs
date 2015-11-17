@@ -20,7 +20,7 @@ namespace TiendaMVC
                 {
                     controller="Producto",
                     action="Detalle",
-                    nombre=UrlParameter.Optional
+                    elnombre=UrlParameter.Optional
                 }
                 );
 
