@@ -1,0 +1,42 @@
+﻿@model TiendaMVC.Models.Almacen
+
+@{
+    ViewBag.Title = "title";
+   
+}
+
+<h2>Modificar un almacen</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+    @Html.HiddenFor(o=>o.IdAlmacen)
+
+
+    <div>
+
+        @Html.LabelFor(o => o.NombreAlmacen)
+        @Html.EditorFor(o => o.NombreAlmacen)
+
+    </div>
+
+    <div>
+
+        @Html.LabelFor(o => o.Ciudad)
+        @Html.EditorFor(o => o.Ciudad)
+
+    </div>
+
+
+    <div>
+
+        @Html.LabelFor(o => o.CP)
+        @Html.EditorFor(o => o.CP)
+
+    </div>
+
+    <input type="submit" value="Guardar" class="btn btn-warning"/>
+
+
+}

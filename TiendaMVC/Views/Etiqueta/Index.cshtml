@@ -1,0 +1,55 @@
+﻿
+@using System.Reflection
+@using System.Web.Mvc.Html
+@using TiendaMVC.Models
+@model IEnumerable<TiendaMVC.Models.Etiqueta>
+
+
+@{
+    ViewBag.Title = "Etiquetas";
+    var alma = ViewBag.almas as IEnumerable<Almacen>;
+}
+
+<div style="width: 50%;float: left">
+    <h1 class="badge" style="margin-left: 100px; font-size: 25px; background: darkgoldenrod">ETIQUETAS</h1>
+    <table>
+        @foreach (var etiquetaca in Model)
+        {
+            <tr>
+                <td class="badge" style="font-size: 20px; background: purple; margin-bottom: 15px; margin-top: 15px;">@Html.DisplayFor(o => etiquetaca.NombreEtiqueta)</td>
+            </tr>
+            <tr>
+                @foreach (var products in etiquetaca.Producto)
+                {
+                    <td class="badge" style="font-size: 12px; background: lightseagreen; margin-left: 5px; margin-right: 5px;">
+                        @products.NombreProducto
+                    </td>
+                }
+
+            </tr>
+        }
+
+    </table>
+</div>
+<div style="width: 50%;float: right">
+    <h1 class="badge" style="margin-left: 50px; font-size: 25px; background: darkgoldenrod">ALMACENES </h1>
+    <br />
+    @foreach (var alm in alma)
+    {
+        <div class="thumbnail" style="float: left; width: 150px; ; margin-left: 20px; margin-right: 20px; height: 100px; text-align: center; margin-bottom: 20px; background: lightgrey; margin-top: 20px;">
+            <strong>@alm.NombreAlmacen</strong>
+            <br />
+            @alm.CP
+            <br />
+            @alm.Ciudad
+        </div>
+
+    }
+
+</div>
+
+
+
+
+
+

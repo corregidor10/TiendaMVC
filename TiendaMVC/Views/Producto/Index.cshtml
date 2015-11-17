@@ -1,0 +1,65 @@
+﻿@using System.Activities.Statements
+@using System.Dynamic
+@using TiendaMVC.Controllers
+@using TiendaMVC.Models
+@model  IEnumerable<TiendaMVC.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Productos </h2>
+
+<table class="table table-striped" style="width: 500px">
+    <tr>
+        <th> @Html.DisplayNameFor(model => model.NombreProducto)</th>
+        <th> @Html.DisplayNameFor(model => model.Categoria)</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var articulo in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(o => articulo.NombreProducto) </td>
+            <td> @Html.DisplayFor(o => articulo.Categoria.NombreCategoria) </td>
+            <td>
+                <ul>
+                    @foreach (var alm in articulo.ProductoAlmacen)
+                {
+                        @*@Html.Partial("_FichaAlmacen",alm.Almacen)*@
+                        <li>@alm.Almacen.NombreAlmacen</li>
+                        <li>@alm.Cantidad</li>
+
+                    }
+                </ul>
+            </td>
+            <td><button class="btn btn-default">@Html.ActionLink("Ver", "Detalle", new { id = articulo.IdProducto })</button>  </td>
+            <td><button class="btn btn-warning">@Html.ActionLink("Editar", "Modificar", new { id = articulo.IdProducto })</button>  </td>
+            <td> <button class="btn btn-danger">@Html.ActionLink("Borrar", "Borrar", new { id = articulo.IdProducto })</button> </td>
+        </tr>
+    }
+
+
+</table>
+<button class="btn btn-success"> @Html.ActionLink("Añadir Producto", "Alta")</button>
+
+
+@*@foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            @Html.DisplayNameFor(o=>o.NombreProducto)
+            @Html.DisplayFor(o=>item.NombreProducto)
+            <br/>
+            @Html.ActionLink("Ver","Detalle", new {id=item.IdProducto})
+            <br />
+            @Html.ActionLink("Eliminar", "Borrar", new { id = item.IdProducto })
+            <br />
+            @Html.ActionLink("Modificar", "Modificar", new { id = item.IdProducto })
+        </div>
+    }
+
+    <br/>
+    <br/>
+    <br/>
+    @Html.ActionLink("Añadir Producto", "Alta")*@

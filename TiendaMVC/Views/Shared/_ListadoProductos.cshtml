@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TiendaMVC.Models.Producto>
+
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(o => o.NombreProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(o => o.Fabricante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(o => o.PC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(o => o.PVP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(o => o.Categoria.NombreCategoria)
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(o => item.NombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(o => item.Fabricante)
+            </td>
+            <td>
+                @Html.DisplayFor(o => item.PC)
+            </td>
+            <td>
+                @Html.DisplayFor(o => item.PVP)
+            </td>
+            <td>
+                @Html.DisplayFor(o => item.Categoria.NombreCategoria)
+            </td>
+
+        </tr>
+    }
+</table>

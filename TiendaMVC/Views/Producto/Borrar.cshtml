@@ -1,0 +1,74 @@
+﻿@model TiendaMVC.Models.Producto
+
+@{
+    ViewBag.Title = "Borrar";
+}
+
+<h2>Borrar</h2>
+
+  
+   
+    <h3>De verdad quieres borrar este artículo?</h3>
+    <div>
+        <h4>Producto</h4>
+        <hr/>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NombreProducto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NombreProducto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Fabricante)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Fabricante)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PC)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PC)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PVP)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PVP)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IdEtiqueta)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IdEtiqueta)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Categoria.NombreCategoria)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Categoria.NombreCategoria)
+            </dd>
+
+        </dl>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-actions no-color">
+        <input type="submit" value="A tomar por culo" class="btn btn-default"/> |
+        @Html.ActionLink("Volver al catálogo", "Index")
+    </div>
+}
+    </div>

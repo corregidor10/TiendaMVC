@@ -1,0 +1,48 @@
+﻿@using TiendaMVC.Models
+@model IEnumerable<TiendaMVC.Models.Almacen>  
+
+@{
+    ViewBag.Title = "Index";
+
+    var etiq = ViewBag.lasetiquetas as List<Etiqueta>;
+}
+
+<h2> @ViewData["Titulo"]</h2>
+
+
+
+
+@foreach (var et in etiq)
+{
+    <h4>@et.NombreEtiqueta</h4>
+
+}
+<div>
+    @foreach (var item in Model)
+         {
+             @Html.Partial("_FichaAlmacen", item)
+
+         }
+</div>
+
+<br/>
+<br />
+<p>
+    <button class="btn btn-success" style="float:none">@Html.ActionLink("Añadir Almacen", "Alta")</button>
+</p>
+
+@section MiJavaScript
+{
+    <script>
+    $(".borrame").click(function() {
+        var r = confirm("ESTAS SEGURO????");
+
+        if (r) {
+            var id = $(this).attr("data-id");
+            location.href = "@Url.Action("Borrar")" +"/"+id;
+        }
+    });
+
+
+</script>
+}

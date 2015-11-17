@@ -1,0 +1,86 @@
+﻿@model IEnumerable<TiendaMVC.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Productos</h2>
+<br/>
+<br/>
+<input type="text" id="txtBusqueda" placeholder="Busca tu producto" class=""/>
+ <button type="button" class="btn btn-info" id="btnSearch">
+<span class="glyphicon glyphicon-search"></span> Buscar
+    </button>
+<br/>
+<br/>
+
+<div id="listado">
+
+    @Html.Partial("_ListadoProductos", Model)
+</div>
+
+<div id="AltaProducto">
+    <form class="form-actions">
+        <input type="text" id="txtNombre" placeholder="Nombre" required="required" />
+        <br />
+        <input type="text" id="txtPC" placeholder="PC" />
+        <br />
+        <input type="text" id="txtPVP" placeholder="PVP" required="required" />
+        <br />
+        <input type="text" id="txtFab" placeholder="Fabricante" required="required" />
+        <br />
+        <input type="number" min="1" max="2" id="txtCategoria" required="required" placeholder="Categoria" size="50" />
+        <br />
+        <input type="button" id="btnGuardar" value="Guardar" />
+    </form>
+</div>
+
+@section MiJavaScript
+{
+    <script>
+        function alta() {
+            var data = {
+                NombreProducto: $("#txtNombre").val(),
+                Fabricante: $("#txtFab").val(),
+                PC: $("#txtPC").val(),
+                PVP: $("#txtPVP").val(),
+                IdCategoria: $("#txtCategoria").val()
+
+            }
+
+            var url = "@Url.Action("Alta")";
+            $.ajax({
+                url: url,
+                data: JSON.stringify(data),
+                type: "POST",
+                headers: { "Content-Type": "application/json" },
+                dataType: "json",
+                success: function(res) {
+                    if (res.IdProducto > 0) {
+                        console.log(res);
+                        alert("Guardado correctamente");
+                    } else {
+                        alert("Error al guardar");
+                    }
+                }
+            });
+
+        }
+
+        $("#btnGuardar").click(alta);
+        $("#btnSearch").click(function() {
+            var url = "@Url.Action("Buscar")";
+            var txt = $("#txtBusqueda").val();
+            url += "?elnombre=" + txt;
+
+            $("#listado").load(url);
+
+        });
+
+    </script>
+
+    }
+
+
+
+
